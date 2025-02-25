@@ -8,5 +8,7 @@
     &lt;TestId&gt;NUnit3x::89B88032-AD96-4F71-8EB5-5A67C3CE9FAB::net8.0::DotNetLearn.DataType.ReferenceTypes.TestObject&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::89B88032-AD96-4F71-8EB5-5A67C3CE9FAB::net8.0::DotNetLearn.DataType.ReferenceTypes.TestDynamic&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;NUnit3x::89B88032-AD96-4F71-8EB5-5A67C3CE9FAB::net8.0::DotNetLearn.DataType.ReferenceTypes.TestString&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::89B88032-AD96-4F71-8EB5-5A67C3CE9FAB::net8.0::DotNetLearn.DataConvert.ImplicitTypeConversion.Test01&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;NUnit3x::89B88032-AD96-4F71-8EB5-5A67C3CE9FAB::net8.0::DotNetLearn.DataConvert.ImplicitTypeConversion.Test02&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>
