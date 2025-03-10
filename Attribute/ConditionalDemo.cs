@@ -1,5 +1,4 @@
-﻿
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace DotNetLearn.Attribute;
 
@@ -22,8 +21,10 @@ public class ConditionalDemo
     [Test]
     public void Test02()
     {
-        # if DEBUG
-            Console.WriteLine("调试模式启动");
-        #endif
+# if CLIENT
+            Console.WriteLine("客户端模式启动");
+#else
+        Console.WriteLine("非客户端模式启动");
+#endif
     }
 }
