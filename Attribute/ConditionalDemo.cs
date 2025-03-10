@@ -1,4 +1,4 @@
-﻿#define DEBUG
+﻿
 using System.Diagnostics;
 
 namespace DotNetLearn.Attribute;
@@ -17,5 +17,13 @@ public class ConditionalDemo
     public void Test01()
     {
         ConditionalDemo.Message("This is a message");
+    }
+
+    [Test]
+    public void Test02()
+    {
+        # if DEBUG
+            Console.WriteLine("调试模式启动");
+        #endif
     }
 }
