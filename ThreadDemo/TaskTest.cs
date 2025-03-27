@@ -63,4 +63,19 @@ public class TaskTest
         int result = await calculateTask;
         Console.WriteLine("Test03,result:{0}",result);
     }
+
+    [Test]
+    public void Test04()
+    {
+        ThreadPool.SetMinThreads(50, 50);
+        var task = Task.Factory.StartNew(() =>
+        {
+            // 长时间运行的任务
+            Thread.Sleep(1000);
+            bool background = Thread.CurrentThread.IsBackground;
+            Console.WriteLine("Background:{0}",background);
+        },TaskCreationOptions.LongRunning);
+        
+        Task.WaitAll(task);
+    }
 }
