@@ -54,6 +54,8 @@ public class TaskTest
         Task<int> calculateTask = Task.Run(() => 
         {
             Thread.Sleep(1000); // 模拟耗时操作
+            bool background = Thread.CurrentThread.IsBackground;
+            Console.WriteLine("当前线程是否是后台线程:{0}",background);
             Console.WriteLine("Calculate Task");
             return 42;
         });
