@@ -78,4 +78,12 @@ public class TaskTest
         
         Task.WaitAll(task);
     }
+
+    public static async Task<int> GetPageLengthAsync(string endpoint)
+    {
+        var client = new HttpClient();
+        var uri = new Uri(endpoint);
+        byte[] content = await client.GetByteArrayAsync(uri);
+        return content.Length;
+    }
 }
