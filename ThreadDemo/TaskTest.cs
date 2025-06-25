@@ -2,6 +2,7 @@
 [TestFixture]
 public class TaskTest
 {
+    // C#异步编程核心API  async、await、task
     [Test]
     public void Test01()
     {
