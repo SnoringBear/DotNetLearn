@@ -39,8 +39,30 @@ public class AsyncBreakfast
         Bacon bacon = await FryBaconAsync(3);
         Console.WriteLine("bacon is ready");
         Toast toast = await ToastBreadAsync(2);
+        Console.WriteLine("------------await after-----------");
         ApplyButter(toast);
         ApplyJam(toast);
+        Console.WriteLine("toast is ready");
+        Juice oj = PourOJ();
+        Console.WriteLine("oj is ready");
+        Console.WriteLine("Breakfast is ready!");
+        
+    }
+    
+    [Test]
+    public async Task Test03()
+    {
+        Coffee cup = PourCoffee();
+        Console.WriteLine("coffee is ready");
+        Task<Egg> eggs =  Task.Run(()=>FryEggsAsync(2));
+        Console.WriteLine("eggs are ready");
+        Task<Bacon> bacon = Task.Run(() => FryBaconAsync(3));
+        Console.WriteLine("bacon is ready");
+        Task<Toast> toast =  Task.Run(()=>ToastBreadAsync(2));
+        Console.WriteLine("------------await after-----------");
+        Task.WaitAll(eggs, bacon, toast);
+        // ApplyButter(toast);
+        // ApplyJam(toast);
         Console.WriteLine("toast is ready");
         Juice oj = PourOJ();
         Console.WriteLine("oj is ready");
