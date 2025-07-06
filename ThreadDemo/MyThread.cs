@@ -19,6 +19,6 @@ public class MyThread
         };
         thread.Start();
         Thread.Sleep(1000);
-        Console.WriteLine("执行结束");
+        Console.WriteLine("Execution ends");
     }
 }

@@ -10,23 +10,27 @@ public class CancellationTokenTest
         testCancellation.Wait();
     }
 
+
+    /// <summary>
+    /// Tests the cancellation of an asynchronous task using a CancellationToken.
+    /// </summary>
     private static async Task TestCancellation()
     {
         using var cts = new CancellationTokenSource();
 
         Task task = DoWorkAsync(cts.Token);
 
-        // 模拟用户在 2 秒后取消任务
+        // Simulate user canceling the task after 2 seconds
         await Task.Delay(2000, cts.Token);
         await cts.CancelAsync();
 
         try
         {
-            await task; // 等待任务完成，观察是否抛出异常
+            await task; // Wait for the task to complete and observe if an exception is thrown
         }
         catch (OperationCanceledException)
         {
-            Console.WriteLine("任务已被取消。");
+            Console.WriteLine("The task has been canceled.");
         }
         finally
         {
@@ -34,14 +38,19 @@ public class CancellationTokenTest
         }
     }
 
+    /// <summary>
+    /// Performs a simulated long-running task, periodically checking for cancellation requests.
+    /// Throws <see cref="OperationCanceledException"/> if cancellation is requested.
+    /// </summary>
+    /// <param name="token">A <see cref="CancellationToken"/> to observe for cancellation requests.</param>
     static async Task DoWorkAsync(CancellationToken token)
     {
         for (int i = 0; i < 10; i++)
         {
-            token.ThrowIfCancellationRequested(); // 检查是否收到取消请求
+            token.ThrowIfCancellationRequested(); // Check if a cancellation request has been received
 
-            Console.WriteLine($"执行任务中... {i + 1}");
-            await Task.Delay(1000); // 模拟耗时任务
+            Console.WriteLine($"Task in progress... {i + 1}");
+            await Task.Delay(1000); // Simulate a time-consuming task
         }
     }
 }
