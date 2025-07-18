@@ -10,9 +10,17 @@ public class StringDemo
         string replace = trim.Replace(" ","");
         Console.WriteLine("replace:{0}", replace);
     }
-    
+
     [Test]
     public void Test02()
+    {
+        string message = "Hello world";
+        string upperMessage = message.ToUpper();
+        Console.WriteLine (upperMessage); // HELLO WORLD
+    }
+    
+    [Test]
+    public void Test03()
     {
         var path = new ActionPath("a:b:c");
         foreach (var action in path)
