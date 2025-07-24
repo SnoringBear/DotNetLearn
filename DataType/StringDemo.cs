@@ -5,17 +5,17 @@ public class StringDemo
     [Test]
     public void Test01()
     {
-        string str = " Hello    World ";
-        string trim = str.Trim();
-        string replace = trim.Replace(" ","");
+        var str = " Hello    World ";
+        var trim = str.Trim();
+        var replace = trim.Replace(" ","");
         Console.WriteLine("replace:{0}", replace);
     }
 
     [Test]
     public void Test02()
     {
-        string message = "Hello world";
-        string upperMessage = message.ToUpper();
+        var message = "Hello world";
+        var upperMessage = message.ToUpper();
         Console.WriteLine (upperMessage); // HELLO WORLD
     }
     
