@@ -1,4 +1,6 @@
-﻿namespace DotNetLearn.DataType;
+﻿using System.Text.Json;
+
+namespace DotNetLearn.DataType;
 [TestFixture]
 public class StringDemo
 {
@@ -7,7 +9,7 @@ public class StringDemo
     {
         var str = " Hello    World ";
         var trim = str.Trim();
-        var replace = trim.Replace(" ","");
+        var replace = trim.Replace(" ", "");
         Console.WriteLine("replace:{0}", replace);
     }
 
@@ -16,9 +18,9 @@ public class StringDemo
     {
         var message = "Hello world";
         var upperMessage = message.ToUpper();
-        Console.WriteLine (upperMessage); // HELLO WORLD
+        Console.WriteLine(upperMessage); // HELLO WORLD
     }
-    
+
     [Test]
     public void Test03()
     {
@@ -27,6 +29,25 @@ public class StringDemo
         {
             Console.WriteLine("action:{0}", action);
         }
+    }
+
+    [Test]
+    public void Test04()
+    {
+        var items = new List<Item>
+{
+    new() { Id = 1, Name = "Apple", Description = "Fresh red apple", Price = 0.99m, CreatedDate = DateTime.UtcNow },
+    new() { Id = 2, Name = "Banana", Description = "Ripe yellow banana", Price = 0.59m, CreatedDate = DateTime.UtcNow },
+    new() { Id = 3, Name = "Orange", Description = "Juicy orange", Price = 0.79m, CreatedDate = DateTime.UtcNow }
+};
+
+        var partialData = items.Select(item => new {
+            item.Id,
+            item.Name
+        });
+        var str = JsonSerializer.Serialize(partialData);
+        Console.WriteLine(partialData);
+        Console.WriteLine(str);
     }
 }
 
@@ -115,4 +136,15 @@ public readonly ref struct ActionPath
             return true;
         }
     }
+}
+
+
+
+public class Item
+{
+    public Int32 Id { get; set; }
+    public String Name { get; set; }
+    public String Description { get; set; }
+    public Decimal Price { get; set; }
+    public DateTime CreatedDate { get; set; }
 }

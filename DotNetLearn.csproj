@@ -10,6 +10,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+        <PackageReference Include="Confluent.Kafka" Version="2.11.0" />
         <PackageReference Include="coverlet.collector" Version="6.0.0" />
         <PackageReference Include="Microsoft.CodeAnalysis.CSharp.Scripting" Version="4.14.0" />
         <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
