@@ -7,40 +7,39 @@ public class KafkaDemo
     [Test]
     public async Task Test1()
     {
-        // 创建生产者
+        // Kafka 配置
         var config = new ProducerConfig
         {
             BootstrapServers = "localhost:9092", // Kafka 服务器地址
-            Acks = Acks.All, 
+            ClientId = "csharp-producer",
+            // 确保消息持久性
+            Acks = Acks.All
         };
-        var producer = new ProducerBuilder<String, String>(config).Build();
-        while (true)
+
+        // 创建生产者
+        using (var producer = new ProducerBuilder<Null, string>(config).Build())
         {
             try
             {
-                var deliveryResult = await producer.ProduceAsync("test-topic", new Message<String, String>
-                {
-                    Key = "test-topic",
-                    Value = "hello",
-                });
-                // 4. 处理发送结果
-                // -----------------
-                // 发送成功后，可以获取到消息的详细信息，例如它被存储在哪个分区 (Partition) 和偏移量 (Offset)。
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine(
-                    $"消息 '{deliveryResult.Value}' 已成功发送到主题 '{deliveryResult.Topic}' 的分区 {deliveryResult.Partition}，偏移量为 {deliveryResult.Offset}");
-                Console.ResetColor();
+                // 要发送的消息
+                string topic = "test-topic";
+                string message = "Hello, Kafka from C#!";
+
+                // 异步发送消息
+                var deliveryResult = await producer.ProduceAsync(topic, 
+                    new Message<Null, string> { Value = message });
+
+                // 打印发送结果
+                Console.WriteLine($"Message delivered to {deliveryResult.TopicPartitionOffset}");
             }
             catch (ProduceException<Null, string> e)
             {
-                // 5. 处理异常
-                // -----------
-                // 如果发送失败，会抛出 ProduceException 异常。
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"发送失败: {e.Error.Reason}");
-                Console.ResetColor();
+                Console.WriteLine($"Delivery failed: {e.Error.Reason}");
             }
-            Task.Delay(TimeSpan.FromSeconds(10)).Wait();
+            catch (Exception e)
+            {
+                Console.WriteLine($"An error occurred: {e.Message}");
+            }
         }
 
     }
